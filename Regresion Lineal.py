@@ -16,7 +16,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 # In[3]:
 
 
-# Cargar el dataset (ajustar la ruta según corresponda)
+# Cargar el dataset 
 ruta = 'C:/Datasets/CAR_DETAILS_FROM_CAR_DEKHO.csv'  # Ruta completa o relativa
 data = pd.read_csv(ruta)
 
@@ -41,7 +41,7 @@ data.describe()
 
 
 # Atributos (características) y variable objetivo
-X = data[['name', 'year','km_driven', 'fuel','seller_type','owner',  ]]  # Reemplaza con los nombres de las columnas relevantes
+X = data[['name', 'year','km_driven', 'fuel','seller_type','owner',  ]] 
 y = data['selling_price']  # Precio del automóvil (variable objetivo)
 
 
