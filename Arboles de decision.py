@@ -139,6 +139,71 @@ plt.ylabel('Realidad')
 plt.show()
 
 
+# In[25]:
+
+
+# Importar la librería para el gráfico
+importances = model.feature_importances_
+feature_names = X.columns
+
+# Crear un DataFrame para las importancias
+importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
+
+# Ordenar las características por importancia
+importance_df = importance_df.sort_values(by='Importance', ascending=False)
+
+# Visualizar la importancia de las características
+plt.figure(figsize=(12, 6))
+sns.barplot(x='Importance', y='Feature', data=importance_df, palette='viridis')
+plt.title('Importancia de las Características en el Modelo')
+plt.xlabel('Importancia')
+plt.ylabel('Características')
+plt.show()
+
+
+# In[27]:
+
+
+# Graficar Predicciones vs Realidad
+plt.figure(figsize=(10, 6))
+plt.scatter(y_test, y_pred, alpha=0.6)
+plt.title('Predicciones vs Realidad')
+plt.xlabel('Realidad')
+plt.ylabel('Predicciones')
+plt.axline((0, 0), slope=1, color='red', linestyle='--')  # Línea de referencia
+plt.xlim(0, 10)  # Ajustar los límites según las clases
+plt.ylim(0, 10)
+plt.grid(True)
+plt.show()
+
+
+# In[29]:
+
+
+from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
+import matplotlib.pyplot as plt
+
+# Calcular las métricas
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average='weighted')
+recall = recall_score(y_test, y_pred, average='weighted')
+f1 = f1_score(y_test, y_pred, average='weighted')
+
+# Crear un DataFrame para las métricas
+metrics_df = pd.DataFrame({
+    'Métrica': ['Precisión', 'Recall', 'F1-Score', 'Exactitud'],
+    'Valor': [precision, recall, f1, accuracy]
+})
+
+# Graficar las métricas
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Métrica', y='Valor', data=metrics_df, palette='viridis')
+plt.title('Métricas de Desempeño del Modelo')
+plt.ylim(0, 1)  # Ajustar el límite superior a 1
+plt.grid(True)
+plt.show()
+
+
 # In[ ]:
 
 
